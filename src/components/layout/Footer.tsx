@@ -11,11 +11,11 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <AcademicCapIcon className="h-8 w-8 text-primary-400" />
-              <span className="text-2xl font-bold">Alison</span>
+              <span className="text-2xl font-bold">ClickCarrer</span>
             </div>
             <p className="text-gray-300 text-sm">
-              Free online courses, certificates, and diplomas from world-class educators.
-              Join 40 million+ learners today.
+              Live online courses with expert instructors. Learn from industry professionals 
+              with personalized 1-on-1 sessions and advance your career.
             </p>
             <div className="flex space-x-4">
               <Link to="#" className="text-gray-400 hover:text-white">
@@ -47,13 +47,13 @@ const Footer: React.FC = () => {
 
           {/* Courses */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Courses</h3>
+            <h3 className="text-lg font-semibold">Learning Zones</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/courses?category=IT" className="text-gray-300 hover:text-white">IT & Computer Science</Link></li>
-              <li><Link to="/courses?category=Health" className="text-gray-300 hover:text-white">Health & Medicine</Link></li>
-              <li><Link to="/courses?category=Business" className="text-gray-300 hover:text-white">Business & Management</Link></li>
-              <li><Link to="/courses?category=Language" className="text-gray-300 hover:text-white">Language Learning</Link></li>
-              <li><Link to="/courses?category=Marketing" className="text-gray-300 hover:text-white">Marketing & Sales</Link></li>
+              <li><Link to="/courses?category=Technical Zone" className="text-gray-300 hover:text-white">Technical Zone</Link></li>
+              <li><Link to="/courses?category=Govt Exam Zone" className="text-gray-300 hover:text-white">Govt Exam Zone</Link></li>
+              <li><Link to="/courses?category=Communication Zone" className="text-gray-300 hover:text-white">Communication Zone</Link></li>
+              <li><Link to="/courses?category=AI & Freelancing Zone" className="text-gray-300 hover:text-white">AI & Freelancing Zone</Link></li>
+              <li><Link to="/blogs" className="text-gray-300 hover:text-white">Learning Blog</Link></li>
             </ul>
           </div>
 
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
               <Link to="#" className="hover:text-white">Accessibility</Link>
             </div>
             <div className="mt-4 md:mt-0 text-sm text-gray-400">
-              <p>&copy; 2024 Alison. All rights reserved.</p>
+              <p>&copy; 2024 ClickCarrer. All rights reserved.</p>
             </div>
           </div>
         </div>
