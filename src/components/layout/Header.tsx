@@ -32,20 +32,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 w-full overflow-x-hidden">
-      {/* Top Bar */}
-      <div className="bg-primary-600 text-white text-sm py-2 w-full overflow-x-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center w-full">
-          <div className="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm">
-            <span className="inline">✓ 25,000+ Students</span>
-            <span>✓ 78+ Live Courses</span>
-            <span className="hidden sm:inline">✓ Expert Instructors</span>
-          </div>
-          <div className="hidden sm:flex items-center space-x-4">
-            <Link to="#" className="hover:text-primary-200 transition-colors">Download App</Link>
-            <Link to="#" className="hover:text-primary-200 transition-colors">For Business</Link>
-          </div>
-        </div>
-      </div>
+
 
       {/* Main Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
