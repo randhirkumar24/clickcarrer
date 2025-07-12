@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '475px',
+        '3xl': '1600px',
+      },
       colors: {
         primary: {
           50: '#f0f9ff',
@@ -33,6 +37,21 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['Inter', 'sans-serif'],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+        '88': '22rem',
+        '96': '24rem',
+        '128': '32rem',
+      },
+      maxWidth: {
+        '8xl': '88rem',
+        '9xl': '96rem',
+      },
+      lineHeight: {
+        '12': '3rem',
+        '14': '3.5rem',
       },
     },
   },

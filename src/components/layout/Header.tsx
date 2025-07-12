@@ -7,12 +7,14 @@ import {
   MagnifyingGlassIcon, 
   UserCircleIcon,
   ChevronDownIcon,
-  AcademicCapIcon
+  AcademicCapIcon,
+  ChevronRightIcon
 } from '@heroicons/react/24/outline';
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -22,24 +24,23 @@ const Header: React.FC = () => {
     setIsUserMenuOpen(false);
   };
 
-  const categories = [
-    'Technical Zone',
-    'Govt Exam Zone', 
-    'Communication Zone',
-    'AI & Freelancing Zone'
-  ];
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-white shadow-sm sticky top-0 z-50 w-full overflow-x-hidden">
       {/* Top Bar */}
-      <div className="bg-primary-600 text-white text-sm py-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <div className="bg-primary-600 text-white text-sm py-2 w-full overflow-x-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center w-full">
           <div className="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm">
-            <span className="hidden sm:inline">✓ 25,000+ Students</span>
+            <span className="inline">✓ 25,000+ Students</span>
             <span>✓ 78+ Live Courses</span>
-            <span className="hidden md:inline">✓ Expert Instructors</span>
+            <span className="hidden sm:inline">✓ Expert Instructors</span>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden sm:flex items-center space-x-4">
             <Link to="#" className="hover:text-primary-200 transition-colors">Download App</Link>
             <Link to="#" className="hover:text-primary-200 transition-colors">For Business</Link>
           </div>
@@ -47,8 +48,8 @@ const Header: React.FC = () => {
       </div>
 
       {/* Main Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex justify-between items-center h-16 w-full">
           {/* Logo */}
           <div className="flex items-center flex-shrink-0">
             <Link to="/" className="flex items-center space-x-2">
@@ -74,24 +75,6 @@ const Header: React.FC = () => {
             <Link to="/courses" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Courses
             </Link>
-            <div className="relative group">
-              <button className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors">
-                Zones
-                <ChevronDownIcon className="ml-1 h-4 w-4" />
-              </button>
-              {/* Categories Dropdown */}
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border">
-                {categories.map((category) => (
-                  <Link
-                    key={category}
-                    to={`/courses?category=${encodeURIComponent(category)}`}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors"
-                  >
-                    {category}
-                  </Link>
-                ))}
-              </div>
-            </div>
             <Link to="/blogs" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Blogs
             </Link>
@@ -100,8 +83,8 @@ const Header: React.FC = () => {
             </Link>
           </nav>
 
-          {/* User Authentication - Increased left margin for more spacing */}
-          <div className="flex items-center space-x-3 ml-8 lg:ml-12">
+          {/* User Authentication - Hidden on mobile, shown on desktop */}
+          <div className="hidden md:flex items-center space-x-3 ml-8 lg:ml-12">
             {user ? (
               <div className="relative">
                 <button
@@ -157,132 +140,122 @@ const Header: React.FC = () => {
                 </Link>
               </div>
             )}
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors ml-2"
-            >
-              {isMobileMenuOpen ? (
-                <XMarkIcon className="h-6 w-6" />
-              ) : (
-                <Bars3Icon className="h-6 w-6" />
-              )}
-            </button>
           </div>
+
+          {/* Mobile menu button - Always visible on mobile */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors ml-2"
+          >
+            {isMobileMenuOpen ? (
+              <XMarkIcon className="h-6 w-6" />
+            ) : (
+              <Bars3Icon className="h-6 w-6" />
+            )}
+          </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t shadow-lg">
-          <div className="px-4 pt-4 pb-6 space-y-3">
+        <div className="md:hidden bg-white border-t shadow-lg w-full overflow-x-hidden">
+          <div className="px-4 pt-4 pb-6 space-y-1 w-full">
             {/* Mobile Search */}
-            <div className="relative mb-4">
+            <div className="relative mb-6 w-full">
               <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search courses..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all text-base"
               />
             </div>
             
+            {/* Mobile Navigation Links */}
             <Link
               to="/courses"
-              className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors w-full"
+              onClick={closeMobileMenu}
             >
-              Courses
+              <span>Courses</span>
+              <ChevronRightIcon className="h-5 w-5" />
             </Link>
+            
+
             
             <Link
               to="/blogs"
-              className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors w-full"
+              onClick={closeMobileMenu}
             >
-              Blogs
+              <span>Blogs</span>
+              <ChevronRightIcon className="h-5 w-5" />
             </Link>
-
+            
             <Link
               to="#"
-              className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors w-full"
+              onClick={closeMobileMenu}
             >
-              For Business
+              <span>For Business</span>
+              <ChevronRightIcon className="h-5 w-5" />
             </Link>
-            
-            <div className="px-4 py-2">
-              <div className="text-sm font-semibold text-gray-900 mb-3">Learning Zones</div>
-              <div className="space-y-1">
-                {categories.map((category) => (
-                  <Link
-                    key={category}
-                    to={`/courses?category=${encodeURIComponent(category)}`}
-                    className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {category}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            
-            {!user && (
-              <div className="px-4 pt-4 mt-4 border-t border-gray-200">
-                <div className="space-y-3">
-                  <Link
-                    to="/login"
-                    className="block w-full text-center py-3 text-gray-700 hover:text-primary-600 font-medium border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="block w-full text-center py-3 btn-primary font-medium"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Sign Up
-                  </Link>
-                </div>
-              </div>
-            )}
 
-            {user && (
-              <div className="px-4 pt-4 mt-4 border-t border-gray-200">
-                <div className="flex items-center space-x-3 mb-4">
+            {/* Mobile User Section */}
+            {user ? (
+              <div className="border-t border-gray-200 pt-4 mt-4 w-full">
+                <div className="flex items-center px-4 py-3 space-x-3 w-full">
                   <img
                     src={user.avatar}
                     alt={user.name}
                     className="h-10 w-10 rounded-full"
                   />
-                  <div>
-                    <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                    <div className="text-xs text-gray-500">Student</div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-base font-medium text-gray-900 truncate">{user.name}</p>
+                    <p className="text-sm text-gray-500 truncate">{user.email}</p>
                   </div>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1 w-full">
                   <Link
                     to="/dashboard"
-                    className="block px-3 py-2 text-sm text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors w-full"
+                    onClick={closeMobileMenu}
                   >
-                    Dashboard
+                    <span>Dashboard</span>
+                    <ChevronRightIcon className="h-5 w-5" />
                   </Link>
                   <Link
                     to="/profile"
-                    className="block px-3 py-2 text-sm text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors w-full"
+                    onClick={closeMobileMenu}
                   >
-                    Profile
+                    <span>Profile</span>
+                    <ChevronRightIcon className="h-5 w-5" />
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
+                    className="flex items-center justify-between w-full px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
                   >
-                    Logout
+                    <span>Logout</span>
+                    <ChevronRightIcon className="h-5 w-5" />
                   </button>
                 </div>
+              </div>
+            ) : (
+              <div className="border-t border-gray-200 pt-4 mt-4 space-y-3 w-full">
+                <Link
+                  to="/login"
+                  className="block w-full text-center px-4 py-3 text-base font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="block w-full text-center px-4 py-3 text-base font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-md transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  Sign Up
+                </Link>
               </div>
             )}
           </div>

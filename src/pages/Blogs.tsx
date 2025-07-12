@@ -47,28 +47,28 @@ const Blogs: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl font-bold mb-3 sm:mb-4">
               Learning Hub
             </h1>
-            <p className="text-xl text-primary-100 max-w-2xl mx-auto">
+            <p className="text-lg xs:text-xl sm:text-2xl text-primary-100 max-w-2xl mx-auto leading-relaxed">
               Expert insights, career guidance, and industry trends from our instructors and industry professionals
             </p>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Search and Filter */}
-        <div className="mb-12">
-          <div className="flex flex-col md:flex-row gap-4 items-center mb-8">
+        <div className="mb-8 sm:mb-12">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
             <div className="relative flex-1">
-              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 xs:h-5 xs:w-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search articles..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                className="w-full pl-9 xs:pl-10 pr-4 py-3 xs:py-4 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -76,7 +76,7 @@ const Blogs: React.FC = () => {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+              className="px-4 py-3 xs:py-4 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
             >
               <option value="">All Categories</option>
               {categories.map((category) => (
@@ -90,23 +90,23 @@ const Blogs: React.FC = () => {
 
         {/* Featured Posts */}
         {!searchTerm && !selectedCategory && (
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Featured Articles</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mb-12 sm:mb-16">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Featured Articles</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               {featuredPosts.slice(0, 2).map((post) => (
                 <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 xs:h-52 sm:h-56 object-cover"
                   />
-                  <div className="p-6">
+                  <div className="p-4 xs:p-5 sm:p-6">
                     <div className="flex items-center mb-3">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
+                      <span className="inline-flex items-center px-2.5 xs:px-3 py-1 rounded-full text-xs xs:text-sm font-medium bg-primary-100 text-primary-800">
                         {post.category}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-gray-900 mb-3 leading-tight">
                       <Link 
                         to={`/blog/${post.id}`} 
                         className="hover:text-primary-600 transition-colors"
@@ -114,9 +114,9 @@ const Blogs: React.FC = () => {
                         {post.title}
                       </Link>
                     </h3>
-                    <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                      <div className="flex items-center space-x-4">
+                    <p className="text-sm xs:text-base text-gray-600 mb-4 leading-relaxed">{post.excerpt}</p>
+                    <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-3 xs:gap-4 text-xs xs:text-sm text-gray-500">
+                      <div className="flex items-center space-x-3 xs:space-x-4">
                         <div className="flex items-center">
                           <UserIcon className="h-4 w-4 mr-1" />
                           <span>{post.author}</span>
@@ -126,7 +126,7 @@ const Blogs: React.FC = () => {
                           <span>{post.readTime}</span>
                         </div>
                       </div>
-                      <span>{formatDate(post.publishDate)}</span>
+                      <span className="xs:text-right">{formatDate(post.publishDate)}</span>
                     </div>
                   </div>
                 </article>
@@ -137,32 +137,32 @@ const Blogs: React.FC = () => {
 
         {/* All Posts */}
         <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">
             {searchTerm || selectedCategory ? 'Search Results' : 'Latest Articles'}
           </h2>
           
           {filteredPosts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {filteredPosts.map((post) => (
                 <article key={post.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-44 xs:h-48 sm:h-52 object-cover"
                   />
-                  <div className="p-6">
+                  <div className="p-4 xs:p-5 sm:p-6">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                      <span className="inline-flex items-center px-2 xs:px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
                         {post.category}
                       </span>
                       {post.featured && (
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                        <span className="inline-flex items-center px-2 xs:px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                           Featured
                         </span>
                       )}
                     </div>
                     
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                    <h3 className="text-base xs:text-lg sm:text-xl font-semibold text-gray-900 mb-2 line-clamp-2 leading-tight">
                       <Link 
                         to={`/blog/${post.id}`} 
                         className="hover:text-primary-600 transition-colors"
@@ -171,9 +171,9 @@ const Blogs: React.FC = () => {
                       </Link>
                     </h3>
                     
-                    <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                    <p className="text-sm xs:text-base text-gray-600 mb-4 line-clamp-3 leading-relaxed">{post.excerpt}</p>
                     
-                    <div className="flex flex-wrap gap-1 mb-4">
+                    <div className="flex flex-wrap gap-1 xs:gap-2 mb-4">
                       {post.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
@@ -185,72 +185,57 @@ const Blogs: React.FC = () => {
                       ))}
                     </div>
                     
-                    <div className="flex items-center justify-between text-sm text-gray-500">
+                    <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-2 xs:gap-3 text-xs xs:text-sm text-gray-500">
                       <div className="flex items-center space-x-3">
                         <div className="flex items-center">
-                          <UserIcon className="h-4 w-4 mr-1" />
+                          <UserIcon className="h-4 w-4 mr-1 flex-shrink-0" />
                           <span className="truncate">{post.author}</span>
                         </div>
                         <div className="flex items-center">
-                          <ClockIcon className="h-4 w-4 mr-1" />
+                          <ClockIcon className="h-4 w-4 mr-1 flex-shrink-0" />
                           <span>{post.readTime}</span>
                         </div>
                       </div>
-                    </div>
-                    
-                    <div className="mt-4">
-                      <Link
-                        to={`/blog/${post.id}`}
-                        className="text-primary-600 hover:text-primary-700 font-medium text-sm"
-                      >
-                        Read More →
-                      </Link>
+                      <span className="xs:text-right">{formatDate(post.publishDate)}</span>
                     </div>
                   </div>
                 </article>
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <div className="text-gray-400 mb-4">
-                <MagnifyingGlassIcon className="h-16 w-16 mx-auto" />
+            <div className="text-center py-12 sm:py-16">
+              <div className="max-w-md mx-auto">
+                <div className="bg-gray-100 rounded-full w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-4">
+                  <MagnifyingGlassIcon className="h-8 w-8 xs:h-10 xs:w-10 sm:h-12 sm:w-12 text-gray-400" />
+                </div>
+                <h3 className="text-lg xs:text-xl sm:text-2xl font-semibold text-gray-900 mb-2">
+                  No articles found
+                </h3>
+                <p className="text-sm xs:text-base text-gray-600 mb-4">
+                  Try adjusting your search or filters to find more articles.
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedCategory('');
+                  }}
+                  className="inline-flex items-center px-4 py-2 xs:px-6 xs:py-3 text-sm xs:text-base font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-md transition-colors"
+                >
+                  Clear All Filters
+                </button>
               </div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                No articles found
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Try adjusting your search terms or filters
-              </p>
-              <button
-                onClick={() => {
-                  setSearchTerm('');
-                  setSelectedCategory('');
-                }}
-                className="btn-primary"
-              >
-                Clear Filters
-              </button>
             </div>
           )}
         </div>
 
-        {/* Newsletter Signup */}
-        <div className="mt-16 bg-gradient-to-r from-primary-600 to-primary-800 rounded-lg p-8 text-center text-white">
-          <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
-          <p className="text-primary-100 mb-6">
-            Get the latest articles, tips, and insights delivered to your inbox
-          </p>
-          <div className="max-w-md mx-auto flex gap-3">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-300"
-            />
-            <button className="bg-white text-primary-600 px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
-              Subscribe
+        {/* Load More Button */}
+        {filteredPosts.length > 0 && filteredPosts.length >= 6 && (
+          <div className="text-center mt-8 sm:mt-12">
+            <button className="inline-flex items-center px-6 py-3 xs:px-8 xs:py-4 text-sm xs:text-base font-medium text-primary-600 bg-white border border-primary-600 rounded-md hover:bg-primary-50 transition-colors">
+              Load More Articles
             </button>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

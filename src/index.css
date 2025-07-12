@@ -5,20 +5,53 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
   }
   
   body {
     @apply font-sans text-gray-900 bg-white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Prevent horizontal scroll */
+  * {
+    box-sizing: border-box;
+  }
+  
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  
+  /* Improved touch targets for mobile */
+  @media (pointer: coarse) {
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
   }
 }
 
 @layer components {
   .btn-primary {
     @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .btn-secondary {
     @apply bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .card {
@@ -39,10 +72,132 @@
     -webkit-line-clamp: 3;
   }
   
+  /* Mobile-specific input styles */
+  input[type="text"], input[type="email"], input[type="password"], textarea, select {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+    font-size: 16px; /* Prevents zoom on iOS */
+    max-width: 100%;
+  }
+  
+  /* Mobile-first button spacing */
+  .btn-group {
+    @apply flex flex-col xs:flex-row gap-3 xs:gap-2;
+  }
+  
+  /* Enhanced mobile navigation */
+  .mobile-nav-item {
+    @apply flex items-center justify-between px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors;
+    min-height: 48px;
+  }
+  
+  /* Mobile-friendly card spacing */
+  .card-mobile {
+    @apply card p-4 xs:p-5 sm:p-6;
+  }
+  
+  /* Responsive text sizing */
+  .text-responsive-sm {
+    @apply text-sm xs:text-base;
+  }
+  
+  .text-responsive-base {
+    @apply text-base xs:text-lg;
+  }
+  
+  .text-responsive-lg {
+    @apply text-lg xs:text-xl sm:text-2xl;
+  }
+  
+  .text-responsive-xl {
+    @apply text-xl xs:text-2xl sm:text-3xl;
+  }
+  
+  .text-responsive-2xl {
+    @apply text-2xl xs:text-3xl sm:text-4xl;
+  }
+  
+  /* Mobile-optimized spacing */
+  .section-padding {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
+  
+  .section-margin {
+    @apply mb-8 sm:mb-12 lg:mb-16;
+  }
+  
+  /* Enhanced grid layouts */
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 xs:grid-cols-2 gap-4 sm:gap-6;
+  }
+  
+  .grid-responsive-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  .grid-responsive-4 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  /* Container width fix */
+  .container-full {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Prevent overflow on all sections */
+  section, div, main {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
   /* Responsive utilities */
   @media (max-width: 640px) {
     .btn-primary, .btn-secondary {
       @apply w-full justify-center;
+    }
+    
+    /* Ensure better mobile spacing */
+    .container {
+      @apply px-4;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    
+    /* Mobile-friendly modal and overlay */
+    .modal-mobile {
+      @apply fixed inset-0 z-50 p-4;
+    }
+    
+    /* Fix any potential width issues */
+    body, html, #root {
+      width: 100%;
+      overflow-x: hidden;
+    }
+  }
+  
+  @media (max-width: 475px) {
+    /* Extra small devices */
+    .section-padding {
+      @apply py-6;
+    }
+    
+    h1 {
+      @apply text-2xl;
+    }
+    
+    h2 {
+      @apply text-xl;
+    }
+    
+    h3 {
+      @apply text-lg;
+    }
+    
+    /* Ensure no horizontal overflow */
+    * {
+      max-width: 100%;
     }
   }
   
@@ -54,5 +209,35 @@
   /* Focus states */
   .focus-visible {
     @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+  
+  /* Mobile-optimized animations */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Touch-friendly hover states */
+  @media (hover: hover) {
+    .hover-lift:hover {
+      transform: translateY(-2px);
+    }
+  }
+  
+  /* Improved mobile typography */
+  .mobile-readable {
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  /* Safe area padding for mobile devices */
+  @supports (padding: max(0px)) {
+    .safe-area-padding {
+      padding-left: max(1rem, env(safe-area-inset-left));
+      padding-right: max(1rem, env(safe-area-inset-right));
+    }
   }
 } 
