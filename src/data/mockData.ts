@@ -429,9 +429,9 @@ With dedication and the right study approach, CCNA certification can significant
   },
   {
     id: '2',
-    title: 'SSC CGL 2024: Complete Preparation Strategy',
+    title: 'SSC CGL 2025: Complete Preparation Strategy',
     excerpt: 'Master the SSC CGL exam with our comprehensive preparation strategy, study plan, and expert tips.',
-    content: `# SSC CGL 2024: Complete Preparation Strategy
+    content: `# SSC CGL 20255: Complete Preparation Strategy
 
 The Staff Selection Commission Combined Graduate Level (SSC CGL) exam is one of India's most competitive government exams. Here's your complete roadmap to success.
 

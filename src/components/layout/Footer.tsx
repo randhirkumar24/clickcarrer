@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
               <Link to="#" className="hover:text-white transition-colors">Accessibility</Link>
             </div>
             <div className="text-sm xs:text-base text-gray-400">
-              <p>&copy; 2024 ClickCarrer. All rights reserved.</p>
+              <p>&copy; 2025 ClickCarrer. All rights reserved.</p>
             </div>
           </div>
         </div>
