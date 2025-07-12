@@ -243,29 +243,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-12 sm:py-16 bg-primary-600 text-white overflow-x-hidden w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 text-center w-full">
-            <div>
-              <div className="text-2xl xs:text-3xl sm:text-4xl font-bold mb-2">{stats.totalLearners}</div>
-              <div className="text-sm xs:text-base text-primary-200">Students Enrolled</div>
-            </div>
-            <div>
-              <div className="text-2xl xs:text-3xl sm:text-4xl font-bold mb-2">{stats.totalCourses}</div>
-              <div className="text-sm xs:text-base text-primary-200">Live Courses</div>
-            </div>
-            <div>
-              <div className="text-2xl xs:text-3xl sm:text-4xl font-bold mb-2">{stats.certificates}</div>
-              <div className="text-sm xs:text-base text-primary-200">Certificates Issued</div>
-            </div>
-            <div>
-              <div className="text-2xl xs:text-3xl sm:text-4xl font-bold mb-2">98%</div>
-              <div className="text-sm xs:text-base text-primary-200">Success Rate</div>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* CTA Section */}
       <section className="py-12 sm:py-16 overflow-x-hidden w-full">
