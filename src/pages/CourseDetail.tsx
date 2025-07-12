@@ -55,6 +55,14 @@ const CourseDetail: React.FC = () => {
     return count.toString();
   };
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0,
+    }).format(price);
+  };
+
   // Mock curriculum data
   const curriculum = [
     {
@@ -150,7 +158,7 @@ const CourseDetail: React.FC = () => {
             <div className="lg:col-span-2">
               <div className="mb-4">
                 <span className="inline-block bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
-                  {course.category}
+                  {course.zone}
                 </span>
               </div>
               <h1 className="text-3xl md:text-4xl font-bold mb-4">{course.title}</h1>
@@ -167,7 +175,10 @@ const CourseDetail: React.FC = () => {
               <div className="flex items-center space-x-6 text-sm">
                 <div className="flex items-center">
                   <UserGroupIcon className="h-5 w-5 mr-2" />
-                  <span>{course.instructor}</span>
+                  <div>
+                    <div>{course.instructor}</div>
+                    <div className="text-gray-400 text-xs">{course.instructorCredentials}</div>
+                  </div>
                 </div>
                 <div className="flex items-center">
                   <ClockIcon className="h-5 w-5 mr-2" />
@@ -179,7 +190,7 @@ const CourseDetail: React.FC = () => {
                 </div>
                 <div className="flex items-center">
                   <GlobeAltIcon className="h-5 w-5 mr-2" />
-                  <span>English</span>
+                  <span>{course.language}</span>
                 </div>
               </div>
             </div>
@@ -199,40 +210,103 @@ const CourseDetail: React.FC = () => {
                 
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-gray-900 mb-2">
-                    {course.isFree ? 'Free' : `$${course.price}`}
+                    {course.isFree ? 'Free' : formatPrice(course.price)}
                   </div>
-                  <p className="text-gray-600">Full lifetime access</p>
+                  {course.originalPrice && (
+                    <div className="flex items-center justify-center space-x-2 mb-2">
+                      <span className="text-lg text-gray-500 line-through">
+                        {formatPrice(course.originalPrice)}
+                      </span>
+                      <span className="text-sm font-medium text-green-600 bg-green-100 px-2 py-1 rounded">
+                        {Math.round(((course.originalPrice - course.price) / course.originalPrice) * 100)}% OFF
+                      </span>
+                    </div>
+                  )}
+                  <p className="text-gray-600">
+                    {course.liveClasses ? 'Live classes with recording access' : 'Self-paced learning'}
+                  </p>
+                  {course.oneOnOne && (
+                    <p className="text-sm text-blue-600 mt-1">Includes 1-on-1 mentoring sessions</p>
+                  )}
                 </div>
                 
                 <button className="w-full btn-primary mb-4">
                   {course.isFree ? 'Enroll for Free' : 'Buy Now'}
                 </button>
+
+                {course.youtubeDemo && (
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-gray-900 mb-2">Watch Demo:</h4>
+                    <div className="relative w-full h-0 pb-9/16 mb-3">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${course.youtubeDemo}`}
+                        title="Course Demo"
+                        className="absolute top-0 left-0 w-full h-full rounded-lg"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  </div>
+                )}
+
+                {course.nextLiveClass && (
+                  <div className="mb-4 p-3 bg-blue-50 rounded-lg">
+                    <h4 className="font-semibold text-blue-900 mb-1">Next Live Class:</h4>
+                    <p className="text-sm text-blue-700">
+                      {new Date(course.nextLiveClass).toLocaleDateString('en-IN', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </p>
+                  </div>
+                )}
                 
                 <div className="border-t pt-4">
                   <h3 className="font-semibold text-gray-900 mb-3">This course includes:</h3>
                   <ul className="space-y-2 text-sm text-gray-600">
                     <li className="flex items-center">
                       <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
-                      {course.modules} modules
+                      {course.modules} comprehensive modules
                     </li>
                     <li className="flex items-center">
                       <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
-                      {course.duration} of content
+                      {course.duration} of expert instruction
+                    </li>
+                    {course.liveClasses && (
+                      <li className="flex items-center">
+                        <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
+                        Live interactive classes
+                      </li>
+                    )}
+                    {course.oneOnOne && (
+                      <li className="flex items-center">
+                        <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
+                        1-on-1 mentoring sessions
+                      </li>
+                    )}
+                    <li className="flex items-center">
+                      <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
+                      Lifetime access to recordings
                     </li>
                     <li className="flex items-center">
                       <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
-                      Full lifetime access
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
-                      Access on mobile and desktop
+                      Mobile and desktop access
                     </li>
                     {course.certificate && (
                       <li className="flex items-center">
                         <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
-                        Certificate of completion
+                        Industry-recognized certificate
                       </li>
                     )}
+                    <li className="flex items-center">
+                      <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
+                      Available in {course.language}
+                    </li>
                   </ul>
                 </div>
               </div>

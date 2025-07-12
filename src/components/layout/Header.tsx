@@ -23,14 +23,10 @@ const Header: React.FC = () => {
   };
 
   const categories = [
-    'IT & Computer Science',
-    'Health & Medicine',
-    'Business & Management',
-    'Language Learning',
-    'Marketing & Sales',
-    'Design & Media',
-    'Personal Development',
-    'Engineering & Construction'
+    'Technical Zone',
+    'Govt Exam Zone', 
+    'Communication Zone',
+    'AI & Freelancing Zone'
   ];
 
   return (
@@ -80,7 +76,7 @@ const Header: React.FC = () => {
             </Link>
             <div className="relative group">
               <button className="flex items-center text-gray-700 hover:text-primary-600 font-medium">
-                Categories
+                Zones
                 <ChevronDownIcon className="ml-1 h-4 w-4" />
               </button>
               {/* Categories Dropdown */}
@@ -96,6 +92,9 @@ const Header: React.FC = () => {
                 ))}
               </div>
             </div>
+            <Link to="/blogs" className="text-gray-700 hover:text-primary-600 font-medium">
+              Blogs
+            </Link>
             <Link to="#" className="text-gray-700 hover:text-primary-600 font-medium">
               For Business
             </Link>
