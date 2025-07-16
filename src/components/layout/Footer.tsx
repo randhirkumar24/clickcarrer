@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2">
               <AcademicCapIcon className="h-8 w-8 text-primary-400" />
-              <span className="text-xl xs:text-2xl font-bold">ClickCarrer</span>
+              <span className="text-xl xs:text-2xl font-bold">ClickCareer</span>
             </div>
             <p className="text-gray-300 text-sm xs:text-base leading-relaxed">
               Live online courses with expert instructors. Learn from industry professionals 
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
               <Link to="#" className="hover:text-white transition-colors">Accessibility</Link>
             </div>
             <div className="text-sm xs:text-base text-gray-400">
-              <p>&copy; 2025 ClickCarrer. All rights reserved.</p>
+              <p>&copy; 2025s ClickCareer. All rights reserved.</p>
             </div>
           </div>
         </div>

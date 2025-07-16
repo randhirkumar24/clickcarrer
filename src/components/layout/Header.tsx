@@ -41,7 +41,7 @@ const Header: React.FC = () => {
           <div className="flex items-center flex-shrink-0">
             <Link to="/" className="flex items-center space-x-2">
               <AcademicCapIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary-600" />
-              <span className="text-xl sm:text-2xl font-bold text-primary-600">ClickCarrer</span>
+              <span className="text-xl sm:text-2xl font-bold text-primary-600">ClickCareer</span>
             </Link>
           </div>
 
