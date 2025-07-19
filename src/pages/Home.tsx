@@ -10,7 +10,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen overflow-x-hidden w-full">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white overflow-x-hidden w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center w-full">
             <div className="space-y-4 sm:space-y-6 text-center lg:text-left w-full">
               <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
