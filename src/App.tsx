@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard';
 import Blogs from './pages/Blogs';
 import BlogDetail from './pages/BlogDetail';
 import { AuthProvider } from './context/AuthContext';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <WhatsAppButton />
         </div>
       </Router>
     </AuthProvider>
