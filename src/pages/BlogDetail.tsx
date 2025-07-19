@@ -7,11 +7,12 @@ import {
   ArrowLeftIcon,
   CalendarIcon
 } from '@heroicons/react/24/outline';
-import { blogPosts } from '../data/mockData';
+import { markdownBlogPosts } from '../utils/blogLoader';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const BlogDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const post = blogPosts.find(p => p.id === id);
+  const post = markdownBlogPosts.find(p => p.id === id);
 
   if (!post) {
     return (
@@ -35,7 +36,7 @@ const BlogDetail: React.FC = () => {
     });
   };
 
-  const relatedPosts = blogPosts
+  const relatedPosts = markdownBlogPosts
     .filter(p => p.id !== post.id && p.category === post.category)
     .slice(0, 3);
 
@@ -106,38 +107,7 @@ const BlogDetail: React.FC = () => {
             </div>
 
             {/* Article Content */}
-            <div className="prose prose-lg prose-gray max-w-none mb-8">
-              {post.content.split('\n').map((paragraph, index) => {
-                if (paragraph.startsWith('#')) {
-                  const level = paragraph.match(/^#+/)?.[0].length || 1;
-                  const text = paragraph.replace(/^#+\s*/, '');
-                  
-                  switch (level) {
-                    case 1:
-                      return <h1 key={index} className="text-3xl font-bold text-gray-900 mt-8 mb-4">{text}</h1>;
-                    case 2:
-                      return <h2 key={index} className="text-2xl font-bold text-gray-900 mt-6 mb-3">{text}</h2>;
-                    case 3:
-                      return <h3 key={index} className="text-xl font-semibold text-gray-900 mt-4 mb-2">{text}</h3>;
-                    default:
-                      return <h4 key={index} className="text-lg font-medium text-gray-900 mt-3 mb-2">{text}</h4>;
-                  }
-                } else if (paragraph.startsWith('-')) {
-                  return (
-                    <li key={index} className="text-gray-700 ml-4">
-                      {paragraph.replace(/^-\s*/, '')}
-                    </li>
-                  );
-                } else if (paragraph.trim()) {
-                  return (
-                    <p key={index} className="text-gray-700 mb-4 leading-relaxed">
-                      {paragraph}
-                    </p>
-                  );
-                }
-                return null;
-              })}
-            </div>
+            <MarkdownRenderer content={post.content} className="mb-8" />
 
             {/* Tags */}
             <div className="mb-8">

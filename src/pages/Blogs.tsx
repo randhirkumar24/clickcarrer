@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ClockIcon, 
-  TagIcon, 
+import {
+  ClockIcon,
+  TagIcon,
   UserIcon,
-  MagnifyingGlassIcon,
-  FunnelIcon 
+  MagnifyingGlassIcon
 } from '@heroicons/react/24/outline';
-import { blogPosts } from '../data/mockData';
+import { markdownBlogPosts } from '../utils/blogLoader';
 
 const Blogs: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [filteredPosts, setFilteredPosts] = useState(blogPosts);
+  const [filteredPosts, setFilteredPosts] = useState(markdownBlogPosts);
 
-  const categories = Array.from(new Set(blogPosts.map(post => post.category)));
-  const featuredPosts = blogPosts.filter(post => post.featured);
+  const categories = Array.from(new Set(markdownBlogPosts.map(post => post.category)));
+  const featuredPosts = markdownBlogPosts.filter(post => post.featured);
 
   React.useEffect(() => {
-    let filtered = blogPosts;
+    let filtered = markdownBlogPosts;
 
     if (searchTerm) {
       filtered = filtered.filter(post => 
@@ -76,6 +75,7 @@ const Blogs: React.FC = () => {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
+              aria-label="Filter articles by category"
               className="px-4 py-3 xs:py-4 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
             >
               <option value="">All Categories</option>
