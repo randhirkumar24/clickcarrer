@@ -295,9 +295,9 @@ const PrivacyPolicy: React.FC = () => {
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
               <div className="space-y-2 text-gray-600">
-                <p><strong>Email:</strong> privacy@clickcareer.com</p>
-                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-                <p><strong>Address:</strong> 123 Learning Street, Education District, New York, NY 10001</p>
+                <p><strong>Email:</strong> work.clickcareer@gmail.com</p>
+                <p><strong>Phone:</strong> +91 79038 17049</p>
+                <p><strong>Address:</strong> 5th Floor, AIC, IIT BHU, Varanasi, Uttar Pradesh, India</p>
                 <p><strong>Data Protection Officer:</strong> dpo@clickcareer.com</p>
               </div>
             </div>
