@@ -63,6 +63,12 @@ const CourseDetail: React.FC = () => {
     }).format(price);
   };
 
+  const handleBuyNow = () => {
+    const message = `Hi! I'm interested in enrolling in the "${course.title}" course. Can you please provide me with more details about enrollment and payment options?`;
+    const whatsappUrl = `https://wa.me/917903817049?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   // Mock curriculum data
   const curriculum = [
     {
@@ -230,7 +236,10 @@ const CourseDetail: React.FC = () => {
                   )}
                 </div>
                 
-                <button className="w-full btn-primary mb-4">
+                <button 
+                  onClick={handleBuyNow}
+                  className="w-full btn-primary mb-4"
+                >
                   {course.isFree ? 'Enroll for Free' : 'Buy Now'}
                 </button>
 

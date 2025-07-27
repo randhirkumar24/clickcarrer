@@ -36,6 +36,12 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
     }).format(price);
   };
 
+  const handleBuyNow = () => {
+    const message = `Hi! I'm interested in enrolling in the "${course.title}" course. Can you please provide me with more details about enrollment and payment options?`;
+    const whatsappUrl = `https://wa.me/917903817049?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="card overflow-hidden h-full flex flex-col">
       <div className="relative">
@@ -64,7 +70,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         )}
       </div>
       
-      <div className="p-3 xs:p-4 sm:p-6 flex flex-col flex-1">
+      <div className="p-4 xs:p-5 sm:p-6 flex-1 flex flex-col">
         <div className="mb-2 xs:mb-3">
           <span className="inline-flex items-center px-2 xs:px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
             {course.category}
@@ -104,7 +110,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           </div>
         </div>
 
-        {course.nextLiveClass && (
+        {course.liveClasses && course.nextLiveClass && (
           <div className="flex items-center text-xs xs:text-sm text-blue-600 mb-3 xs:mb-4">
             <CalendarDaysIcon className="h-3 w-3 xs:h-4 xs:w-4 mr-1 flex-shrink-0" />
             <span className="truncate">Next Live: {new Date(course.nextLiveClass).toLocaleDateString('en-IN')}</span>
@@ -125,7 +131,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         </div>
 
         {/* Pricing Section */}
-        <div className="mb-3 xs:mb-4">
+        <div className="mb-4">
           <div className="flex items-center flex-wrap gap-2">
             <span className="text-lg xs:text-xl sm:text-2xl font-bold text-gray-900">
               {formatPrice(course.price)}
@@ -147,12 +153,12 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         </div>
         
         <div className="mt-auto space-y-2 xs:space-y-3">
-          <Link
-            to={`/course/${course.id}`}
+          <button
+            onClick={handleBuyNow}
             className="btn-primary w-full text-center py-2.5 xs:py-3 text-sm xs:text-base"
           >
             Buy Now
-          </Link>
+          </button>
           {course.youtubeDemo && (
             <a
               href={`https://www.youtube.com/watch?v=${course.youtubeDemo}`}
