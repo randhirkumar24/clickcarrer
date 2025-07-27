@@ -72,7 +72,7 @@ const Header: React.FC = () => {
 
           {/* User Authentication - Hidden on mobile, shown on desktop */}
           <div className="hidden md:flex items-center space-x-3 ml-8 lg:ml-12">
-            {user ? (
+            {user && (
               <div className="relative">
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
@@ -110,21 +110,6 @@ const Header: React.FC = () => {
                     </button>
                   </div>
                 )}
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <Link
-                  to="/login"
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors px-3 py-2 rounded-md hover:bg-gray-50"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="btn-primary px-4 py-2 text-sm font-medium"
-                >
-                  Sign Up
-                </Link>
               </div>
             )}
           </div>
@@ -188,7 +173,7 @@ const Header: React.FC = () => {
             </Link>
 
             {/* Mobile User Section */}
-            {user ? (
+            {user && (
               <div className="border-t border-gray-200 pt-4 mt-4 w-full">
                 <div className="flex items-center px-4 py-3 space-x-3 w-full">
                   <img
@@ -226,23 +211,6 @@ const Header: React.FC = () => {
                     <ChevronRightIcon className="h-5 w-5" />
                   </button>
                 </div>
-              </div>
-            ) : (
-              <div className="border-t border-gray-200 pt-4 mt-4 space-y-3 w-full">
-                <Link
-                  to="/login"
-                  className="block w-full text-center px-4 py-3 text-base font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-                  onClick={closeMobileMenu}
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="block w-full text-center px-4 py-3 text-base font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-md transition-colors"
-                  onClick={closeMobileMenu}
-                >
-                  Sign Up
-                </Link>
               </div>
             )}
           </div>
