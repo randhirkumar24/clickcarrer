@@ -64,8 +64,8 @@ const Footer: React.FC = () => {
               <li><Link to="#" className="text-gray-300 hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="#" className="text-gray-300 hover:text-white transition-colors">Careers</Link></li>
               <li><Link to="#" className="text-gray-300 hover:text-white transition-colors">Press</Link></li>
-              <li><Link to="#" className="text-gray-300 hover:text-white transition-colors">Blog</Link></li>
-              <li><Link to="#" className="text-gray-300 hover:text-white transition-colors">Contact</Link></li>
+              <li><Link to="/blogs" className="text-gray-300 hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -85,10 +85,10 @@ const Footer: React.FC = () => {
         <div className="mt-8 pt-6 sm:pt-8 border-t border-gray-800">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <div className="flex flex-col sm:flex-row justify-center sm:justify-start space-y-2 sm:space-y-0 sm:space-x-6 text-sm xs:text-base text-gray-400">
-              <Link to="#" className="hover:text-white transition-colors">Terms of Service</Link>
-              <Link to="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link to="#" className="hover:text-white transition-colors">Cookie Policy</Link>
-              <Link to="#" className="hover:text-white transition-colors">Accessibility</Link>
+              <Link to="/terms-and-conditions" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/shipping-policy" className="hover:text-white transition-colors">Shipping Policy</Link>
+              <Link to="/cancellations-and-refunds" className="hover:text-white transition-colors">Refunds</Link>
             </div>
             <div className="text-sm xs:text-base text-gray-400">
               <p>&copy; 2025 ClickCareer. All rights reserved.</p>

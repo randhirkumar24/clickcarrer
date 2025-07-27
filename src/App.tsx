@@ -11,6 +11,11 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Blogs from './pages/Blogs';
 import BlogDetail from './pages/BlogDetail';
+import ContactUs from './pages/ContactUs';
+import ShippingPolicy from './pages/ShippingPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
+import CancellationsAndRefunds from './pages/CancellationsAndRefunds';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import { AuthProvider } from './context/AuthContext';
 import WhatsAppButton from './components/WhatsAppButton';
 
@@ -31,6 +36,11 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/shipping-policy" element={<ShippingPolicy />} />
+              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+              <Route path="/cancellations-and-refunds" element={<CancellationsAndRefunds />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             </Routes>
           </main>
           <Footer />
